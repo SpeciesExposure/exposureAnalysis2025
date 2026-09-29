@@ -1,0 +1,14 @@
+# local paths
+config/paths_local.R
+
+# generated files
+output/
+work/
+inputs/
+
+# R and system files
+.Rhistory
+.RData
+.Rproj.user/
+Rplots.pdf
+.DS_Store
