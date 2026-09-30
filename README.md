@@ -108,7 +108,7 @@ The scripts here were cleaned from the working code: notes, unused code and mach
 
 | Script | Check | Result |
 |---|---|---|
-| `3b_ClimatePrep.r` | Land grid and climate tables rebuilt from the ERA5 files | Land grid and annual temperature table identical. Warmest 3 months identical to within 0.00003 K, which is the rounding of the stored file. The other four tables were still being rebuilt when this was written |
+| `3b_ClimatePrep.r` | Land grid and climate tables rebuilt from the ERA5 files | Land grid and five tables identical. Warmest 3 months identical to within 0.00003 K, which is the rounding of the stored file |
 | `3a_SpeciesRanges.r` | Ranges rebuilt for a sample of 69 species from all four groups | All 69 identical |
 | `4_Metadata.r` | Species attributes rebuilt for all species | Group, IUCN category, taxonomy, range size and ecoregions identical for all 32,345 species |
 | `5_CalcExposure.r` | Limits and exposed cells recomputed for 68 species and 8 variables | Identical for 7 variables. For the warmest 3 months the limits differ by at most 0.00003 K and no exposed-cell count changes |
