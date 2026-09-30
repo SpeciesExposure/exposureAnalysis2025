@@ -2,13 +2,15 @@
 # Figure 4: number of species exposed in 2025, per ecoregion (panel A) and per
 # 0.25 degree cell in three regions (panels B-D).
 # Figure S5: number of chronically exposed species per ecoregion. A species is
-# counted as chronically exposed here when it has at least one exposed cell in
+# chronically exposed when it was exposed, with at least 25% of its range, in
 # 6 or more years between 1990 and 2025.
 #
-# A species is counted in a cell or ecoregion when it has at least one exposed
-# cell there. The 25% of range rule is not applied in these maps.
+# In both figures a species is counted in a cell or ecoregion when it has at
+# least one exposed cell there in 2025. Figure 4 counts every such species.
+# Figure S5 counts only the chronically exposed ones.
 #
-# Inputs:  AllCellExposureSpXVar.qs, landTemplate.tif, ecoregion raster and shapefile
+# Inputs:  AllCellExposureSpXVar.qs, singleMaxExposure_v1.qs, landTemplate.tif,
+#          ecoregion raster and shapefile
 # Outputs: rasters and tables in intDir/MapProducts_4_Maps, figures in plotDir
 
 suppressPackageStartupMessages({
@@ -162,7 +164,11 @@ write.csv(eco_counts, eco_table_file, row.names = FALSE)
 write_ecoregion_count_raster(eco_counts, eco_r, eco_raster_out_file)
 
 # 3) Chronic exposure richness at cell level
-chronic_species <- all_exp %>%
+# Chronic species: exposed in >= chronic_min_years years, where exposed means at least 25% of the
+# range beyond the limit of one variable (the rows of singleMaxExposure_v1.qs)
+single_max_file <- file.path(intDir, "singleMaxExposure_v1.qs")
+if (!file.exists(single_max_file)) stop("Missing single-max exposure file: ", single_max_file)
+chronic_species <- qs_read(single_max_file) %>%
   filter(year >= chronic_year_min, year <= chronic_year_max) %>%
   distinct(spName, year) %>%
   count(spName, name = "n_exposure_years") %>%

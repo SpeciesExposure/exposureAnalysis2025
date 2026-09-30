@@ -108,14 +108,15 @@ The scripts here were cleaned from the working code: notes, unused code and mach
 
 | Script | Check | Result |
 |---|---|---|
-| `3b_ClimatePrep.r` | Land grid and climate tables rebuilt from the ERA5 files | Land grid and annual temperature table identical. The other five tables were still being rebuilt when this was written |
+| `3b_ClimatePrep.r` | Land grid and climate tables rebuilt from the ERA5 files | Land grid and annual temperature table identical. Warmest 3 months identical to within 0.00003 K, which is the rounding of the stored file. The other four tables were still being rebuilt when this was written |
 | `3a_SpeciesRanges.r` | Ranges rebuilt for a sample of 69 species from all four groups | All 69 identical |
 | `4_Metadata.r` | Species attributes rebuilt for all species | Group, IUCN category, taxonomy, range size and ecoregions identical for all 32,345 species |
 | `5_CalcExposure.r` | Limits and exposed cells recomputed for 68 species and 8 variables | Identical for 7 variables. For the warmest 3 months the limits differ by at most 0.00003 K and no exposed-cell count changes |
 | `6_MakeDF.r` | The three data frames rebuilt from the per-species outputs | All identical, including 75.5 million exposed cell records |
 | `8_AppData.r` | App data rebuilt | Identical to the data shipped with the app |
 | Tables 1 to 3 | Rebuilt | Identical |
-| Figures 1 to 4, S1 to S6 | Redrawn | Identical, pixel for pixel, to the existing figure files |
+| Figures 1 to 4, S1 to S4, S6 | Redrawn | Identical, pixel for pixel, to the existing figure files |
+| Figure S5 | Redrawn | Identical to the existing file before one correction. The chronically exposed species are now defined with the 25% of range rule, as in the text, which gives 1,584 species |
 | Figure 5 | Redrawn | The underlying tables are identical to the existing tables |
 
 ## Notes on reproducibility
